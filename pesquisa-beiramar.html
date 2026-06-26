@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pesquisa de Preferência · Beira Mar · Plano de Saúde</title>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1539990701043173');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1539990701043173&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1E3A5F; --navy-dark:#152B47; --blue:#1B7DC4;
+  --blue-light:#7EC8E3; --blue-ice:#EAF5FB; --bg:#F5F4F0;
+  --border:rgba(30,58,95,0.12); --text:#3A4A5C; --muted:#7A8999;
+  --ok:#1a7a3a; --ok-bg:#e8f7ed; --err:#c0392b;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--navy-dark);padding:14px 28px;display:flex;align-items:center;gap:16px;}
+.topbar img{height:40px;width:auto;display:block;filter:brightness(0) invert(1);}
+.topbar-title{font-family:'Nunito',sans-serif;font-weight:800;color:#fff;font-size:16px;letter-spacing:.01em;}
+.topbar-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px;}
+
+/* ── WRAP ── */
+.wrap{max-width:860px;margin:0 auto;padding:28px 16px 60px;}
+
+/* ── INTRO BANNER ── */
+.intro-banner{background:linear-gradient(135deg,var(--blue) 0%,var(--navy-dark) 100%);padding:22px 24px;border-radius:14px;color:#fff;margin-bottom:20px;}
+.intro-banner h2{font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;margin-bottom:8px;}
+.intro-banner p{font-size:13px;opacity:.85;line-height:1.7;}
+
+/* ── STEPS ── */
+.steps{display:flex;align-items:center;gap:0;margin-bottom:28px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--border);}
+.step-item{flex:1;padding:14px 8px;text-align:center;position:relative;cursor:default;}
+.step-item:not(:last-child)::after{content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);width:1px;height:60%;background:var(--border);}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--border);color:var(--muted);font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;margin:0 auto 4px;}
+.step-label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em;}
+.step-item.active .step-num{background:var(--blue);color:#fff;}
+.step-item.active .step-label{color:var(--navy);}
+.step-item.done .step-num{background:var(--ok-bg);color:var(--ok);}
+.step-item.done .step-label{color:var(--ok);}
+
+/* ── CARD ── */
+.card{background:#fff;border-radius:14px;border:1px solid var(--border);padding:24px;margin-bottom:16px;}
+.card-title{font-family:'Nunito',sans-serif;font-weight:800;color:var(--navy);font-size:18px;margin-bottom:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.card-title .badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:3px 9px;border-radius:20px;background:var(--blue-ice);color:var(--blue);}
+
+/* ── FORM ── */
+label{display:block;font-size:12px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+input[type=text],input[type=email],input[type=date],input[type=number],select{
+  width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;
+  font-family:'Inter',sans-serif;font-size:14px;color:var(--navy);background:#fff;
+  transition:border .15s;outline:none;
+}
+input[type=text]:focus,input[type=email]:focus,input[type=date]:focus,input[type=number]:focus,select:focus{border-color:var(--blue);}
+.field{margin-bottom:18px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.field-row-3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;}
+@media(max-width:560px){.field-row,.field-row-3{grid-template-columns:1fr;}}
+.section-divider{border:none;border-top:1px solid var(--border);margin:20px 0;}
+.section-sub{font-family:'Nunito',sans-serif;font-weight:700;font-size:12px;color:var(--muted);margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em;}
+.field-hint{font-size:11px;color:var(--muted);margin-top:5px;}
+.field-err{font-size:11px;color:var(--err);margin-top:5px;display:none;}
+.field-err.show{display:block;}
+.age-tag{display:inline-flex;align-items:center;background:var(--blue-ice);color:var(--blue);font-family:'Nunito',sans-serif;font-weight:700;font-size:12px;padding:3px 10px;border-radius:20px;margin-top:6px;}
+.age-tag.hidden{display:none;}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;}
+input[type=number]{-moz-appearance:textfield;}
+
+/* ── PLAN CARDS ── */
+.plans-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:12px;margin-bottom:8px;}
+.plan-card{border:2px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;transition:all .15s;background:#fff;position:relative;}
+.plan-card:hover{border-color:var(--blue);box-shadow:0 4px 16px rgba(27,125,196,.1);}
+.plan-card.selected{border-color:var(--blue);background:var(--blue-ice);}
+.op-badge{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:3px 8px;border-radius:6px;margin-bottom:6px;}
+.op-amil{background:#ebe9ff;color:#5B4CFF;}
+.op-porto{background:#e2f5eb;color:#1a6b3a;}
+.plan-name{font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;color:var(--navy);margin-bottom:4px;}
+.plan-name-sub{font-size:11px;font-weight:600;color:var(--muted);margin-bottom:10px;}
+.plan-badges{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;}
+.plan-badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;background:var(--bg);color:var(--muted);}
+.plan-badge.nacional{background:#e0ecfb;color:#0A5FA3;}
+.plan-badge.regional{background:#fff3cd;color:#856404;}
+.plan-badge.cp-total{background:#fdecea;color:#b71c1c;}
+.plan-badge.cp-tp{background:#fff3e0;color:#e65100;}
+.plan-badge.cp-sim{background:#fff3e0;color:#e65100;}
+.plan-badge.cp-nao{background:#e8f7ed;color:#1a7a3a;}
+.plan-price-full{font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;color:var(--navy);line-height:1;}
+.plan-price-label{font-size:10px;color:var(--muted);margin-top:2px;}
+.plan-check{position:absolute;top:12px;right:12px;width:22px;height:22px;border-radius:50%;background:var(--blue);display:none;align-items:center;justify-content:center;}
+.plan-check svg{width:12px;height:12px;fill:#fff;}
+.plan-card.selected .plan-check{display:flex;}
+
+/* ── PLAN DETAILS ── */
+.details-panel{background:#fff;border-radius:14px;border:1px solid var(--border);padding:22px;margin-bottom:16px;}
+.details-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;color:var(--navy);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+
+/* ── COPART TABLE ── */
+.copart-table{width:100%;border-collapse:collapse;font-size:13px;}
+.copart-table thead th{background:var(--navy);color:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.04em;padding:9px 14px;text-align:left;}
+.copart-table thead th:last-child{text-align:right;}
+.copart-table tbody td{padding:8px 14px;border-bottom:1px solid var(--border);font-size:13px;}
+.copart-table tbody td:last-child{text-align:right;font-family:'Nunito',sans-serif;font-weight:700;color:var(--navy);}
+.copart-table tbody tr:last-child td{border-bottom:none;}
+.copart-table tbody tr:hover td{background:#f8fbff;}
+.no-copart-box{background:var(--ok-bg);border-radius:10px;padding:14px 18px;color:var(--ok);font-family:'Nunito',sans-serif;font-weight:700;font-size:14px;text-align:center;}
+
+/* ── REDE TABLE ── */
+.rede-table-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border);}
+table.rede{width:100%;border-collapse:collapse;font-size:12px;}
+table.rede th{background:var(--navy);color:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.04em;padding:10px 10px;text-align:center;white-space:nowrap;}
+table.rede th.hl{background:var(--blue);}
+table.rede th.left{text-align:left;}
+table.rede td{padding:8px 10px;border-bottom:1px solid var(--border);text-align:center;}
+table.rede td.hl{background:var(--blue-ice);}
+table.rede td.reg{font-size:11px;color:var(--muted);text-align:left;}
+table.rede td.hosp{font-weight:600;color:var(--navy);text-align:left;}
+table.rede tr:hover td{background:#f8fbff;}
+table.rede tr:hover td.hl{background:#d8edf8;}
+table.rede tr:last-child td{border-bottom:none;}
+.tick{color:var(--ok);font-size:14px;font-weight:800;}
+.cross{color:#ccc;font-size:13px;}
+
+/* ── DEPENDENTES ── */
+.dep-card{background:var(--bg);border-radius:10px;padding:16px;margin-bottom:12px;position:relative;}
+.dep-card-title{font-family:'Nunito',sans-serif;font-weight:700;font-size:13px;color:var(--navy);margin-bottom:12px;}
+.dep-remove{position:absolute;top:12px;right:12px;background:none;border:1px solid var(--border);border-radius:6px;padding:4px 8px;cursor:pointer;font-size:11px;color:var(--muted);}
+.dep-remove:hover{border-color:var(--err);color:var(--err);}
+.dep-price{font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;color:var(--blue);margin-top:10px;}
+.dep-note{font-size:11px;color:var(--muted);margin-top:2px;}
+
+/* ── BUTTONS ── */
+.btn{font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;padding:13px 28px;border-radius:10px;cursor:pointer;border:none;transition:all .15s;}
+.btn-primary{background:var(--blue);color:#fff;}
+.btn-primary:hover{background:#1567a8;}
+.btn-outline{background:#fff;color:var(--navy);border:2px solid var(--border);}
+.btn-outline:hover{border-color:var(--blue);color:var(--blue);}
+.btn-add{background:var(--blue-ice);color:var(--blue);border:1.5px dashed var(--blue);border-radius:10px;padding:12px;width:100%;font-family:'Nunito',sans-serif;font-weight:700;font-size:14px;cursor:pointer;}
+.btn-add:hover{background:#d4eaf8;}
+.btn-row{display:flex;gap:12px;justify-content:flex-end;margin-top:20px;}
+
+/* ── POLICY BOX ── */
+.policy-box{background:#fff8e1;border:1px solid #ffe082;border-radius:10px;padding:12px 16px;font-size:12px;color:#795548;line-height:1.7;margin-top:12px;}
+.policy-box strong{color:var(--navy);}
+
+/* ── RESUMO ── */
+.resumo-header{background:linear-gradient(135deg,var(--navy-dark),var(--blue));border-radius:12px;padding:20px;color:#fff;margin-bottom:16px;}
+.resumo-nome{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;}
+.resumo-plano{font-size:14px;color:rgba(255,255,255,.75);margin-top:4px;}
+.resumo-info{font-size:12px;color:rgba(255,255,255,.6);margin-top:6px;}
+.resumo-total{font-family:'Nunito',sans-serif;font-weight:900;font-size:28px;margin-top:14px;}
+.resumo-total span{font-size:14px;font-weight:600;opacity:.7;}
+
+.resumo-row{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;gap:12px;}
+.resumo-row:last-child{border-bottom:none;}
+.resumo-row .rr-label{color:var(--text);}
+.resumo-row .rr-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+.resumo-row .rr-val{font-family:'Nunito',sans-serif;font-weight:700;color:var(--navy);white-space:nowrap;}
+
+/* ── DISCLAIMER ── */
+.disclaimer{background:#fff8e1;border:1px solid #ffe082;border-radius:8px;padding:12px 16px;font-size:12px;color:#795548;margin-top:12px;line-height:1.6;}
+
+/* ── SUCCESS ── */
+.success{text-align:center;padding:40px 20px;}
+.success-icon{width:64px;height:64px;border-radius:50%;background:var(--ok-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:32px;}
+.success h2{font-family:'Nunito',sans-serif;font-weight:900;font-size:24px;color:var(--navy);margin-bottom:8px;}
+.success p{color:var(--muted);font-size:14px;line-height:1.6;}
+
+.hidden{display:none;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <img src="../Manual da Marca AMV/Corretora Amor _ Vida/assets/logo-horizontal-branca.png" alt="Amor à Vida"
+       onerror="this.src='https://corretoraamoravida.com.br/wp-content/uploads/2023/04/logo-amor-a-vida.svg'">
+  <div>
+    <div class="topbar-title">Pesquisa de Preferência · Beira Mar</div>
+    <div class="topbar-sub">Corretora Amor à Vida</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- STEPS -->
+  <div class="steps" id="steps">
+    <div class="step-item active" data-s="1">
+      <div class="step-num">1</div>
+      <div class="step-label">Dados</div>
+    </div>
+    <div class="step-item" data-s="2">
+      <div class="step-num">2</div>
+      <div class="step-label">Plano</div>
+    </div>
+    <div class="step-item" data-s="3">
+      <div class="step-num">3</div>
+      <div class="step-label">Dependentes</div>
+    </div>
+    <div class="step-item" data-s="4">
+      <div class="step-num">4</div>
+      <div class="step-label">Resumo</div>
+    </div>
+  </div>
+
+  <!-- ═══════ STEP 1 ═══════ -->
+  <div id="s1">
+
+    <div class="intro-banner">
+      <h2>Pesquisa de Preferência — Plano de Saúde</h2>
+      <p>Olá, colaborador da Beira Mar! Esta pesquisa tem como objetivo conhecer sua preferência em relação às opções de plano de saúde. Suas respostas são essenciais para que a empresa escolha a melhor solução para todo o time.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Seus Dados</div>
+
+      <div class="field">
+        <label>Nome completo</label>
+        <input type="text" id="nome" placeholder="Ex: Maria da Silva">
+      </div>
+
+      <div class="field">
+        <label>E-mail <span style="font-weight:400;text-transform:none">(opcional)</span></label>
+        <input type="email" id="email" placeholder="seu.email@beiramar.com.br">
+      </div>
+
+      <hr class="section-divider">
+      <div class="section-sub">Perfil de saúde</div>
+
+      <div class="field-row-3">
+        <div class="field">
+          <label>Data de nascimento</label>
+          <input type="date" id="dataNasc" max="">
+          <div class="age-tag hidden" id="age-tag-titular"></div>
+          <div class="field-err" id="err-dataNasc">Informe uma data válida.</div>
+        </div>
+        <div class="field">
+          <label>Peso <span style="font-weight:400;text-transform:none">(kg)</span></label>
+          <input type="number" id="peso" placeholder="75" min="1" max="300" step="0.1">
+          <div class="field-hint">Ex: 75,5</div>
+        </div>
+        <div class="field">
+          <label>Altura <span style="font-weight:400;text-transform:none">(cm)</span></label>
+          <input type="number" id="altura" placeholder="175" min="30" max="250" step="1">
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="goStep(2)">Próximo →</button>
+    </div>
+  </div>
+
+  <!-- ═══════ STEP 2 ═══════ -->
+  <div id="s2" class="hidden">
+    <div class="card">
+      <div class="card-title">
+        Qual plano você prefere?
+        <span class="badge" id="faixa-badge"></span>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:20px">
+        Os valores são calculados para a sua faixa etária. Selecione o plano de sua preferência para ver coparticipação e rede credenciada.
+      </p>
+      <div class="plans-grid" id="plans-grid"></div>
+    </div>
+
+    <div id="details-panel" class="details-panel hidden">
+      <div id="details-copart"></div>
+      <div id="details-rede" style="margin-top:22px"></div>
+    </div>
+
+    <div class="policy-box">
+      <strong>Atenção:</strong> Os valores apresentados são o custo mensal integral do plano, calculados para a sua faixa etária. A divisão dos custos entre empresa e colaborador será definida após a análise desta pesquisa.
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="goStep(1)">← Voltar</button>
+      <button class="btn btn-primary" onclick="goStep(3)">Próximo →</button>
+    </div>
+  </div>
+
+  <!-- ═══════ STEP 3 ═══════ -->
+  <div id="s3" class="hidden">
+    <div class="card">
+      <div class="card-title">
+        Dependentes
+        <span class="badge" style="background:#e8f7ed;color:var(--ok)">Opcional</span>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:20px">
+        Se pretende incluir dependentes no plano, informe os dados abaixo. Isso nos ajuda a calcular o custo total para sua família.
+      </p>
+      <div id="deps-list"></div>
+      <button class="btn-add" onclick="addDep()">+ Adicionar dependente</button>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="goStep(2)">← Voltar</button>
+      <button class="btn btn-primary" onclick="goStep(4)">Ver Resumo →</button>
+    </div>
+  </div>
+
+  <!-- ═══════ STEP 4 ═══════ -->
+  <div id="s4" class="hidden">
+    <div id="resumo-content"></div>
+    <div class="disclaimer">
+      ⚠️ Esta pesquisa tem caráter informativo e visa identificar a preferência dos colaboradores. Os valores apresentados são estimativas e podem sofrer alterações. A definição do produto e das condições de custeio ocorrerá após análise das respostas.
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-outline" onclick="goStep(3)">← Voltar</button>
+      <button class="btn btn-primary" id="btn-enviar" onclick="enviar()">Enviar Resposta</button>
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div id="s-success" class="card hidden">
+    <div class="success">
+      <div class="success-icon">✓</div>
+      <h2>Resposta enviada com sucesso!</h2>
+      <p>Obrigado por participar!<br>Sua preferência foi registrada e contribuirá para a decisão da Beira Mar.</p>
+      <br>
+      <button class="btn btn-primary" onclick="location.reload()">Nova resposta</button>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz95DKgv81hK6aHjOGgsRO7HyK1-cuUYDOoTRaX7DbhQ8cEGFGe-JWBAVDuL7Q37280/exec';
+
+/* ═══════════════════════════════════════════════
+   DADOS DOS PLANOS
+═══════════════════════════════════════════════ */
+const PLANOS = {
+  amil_bronze_ct: {
+    nome:'Bronze', sub:'Copart Total', op:'AMIL', cat:'amil', cob:'Regional',
+    copartLabel:'Coparticipação em todos os procedimentos',
+    v:{'0-18':216.17,'19-23':293.57,'24-28':344.62,'29-33':344.62,
+       '34-38':344.62,'39-43':384.95,'44-48':531.61,'49-53':634.75,
+       '54-58':912.77,'59+':1294.31}
+  },
+  amil_bronze_tp: {
+    nome:'Bronze', sub:'Copart só em Terapias', op:'AMIL', cat:'amil', cob:'Regional',
+    copartLabel:'Coparticipação apenas em terapias',
+    v:{'0-18':288.23,'19-23':391.42,'24-28':459.48,'29-33':459.48,
+       '34-38':459.48,'39-43':513.24,'44-48':708.78,'49-53':846.28,
+       '54-58':1216.96,'59+':1725.65}
+  },
+  porto_p220_cc: {
+    nome:'P220', sub:'Com Coparticipação', op:'PORTO SAÚDE', cat:'porto', cob:'Nacional',
+    copartLabel:'Com coparticipação',
+    v:{'0-18':197.56,'19-23':248.77,'24-28':300.10,'29-33':343.56,
+       '34-38':372.25,'39-43':384.44,'44-48':459.22,'49-53':476.11,
+       '54-58':610.83,'59+':988.83}
+  },
+  porto_p220_sc: {
+    nome:'P220', sub:'Sem Coparticipação', op:'PORTO SAÚDE', cat:'porto', cob:'Nacional',
+    copartLabel:'Sem coparticipação',
+    v:{'0-18':274.38,'19-23':343.29,'24-28':414.12,'29-33':474.10,
+       '34-38':513.69,'39-43':530.51,'44-48':633.71,'49-53':661.26,
+       '54-58':842.92,'59+':1373.38}
+  },
+};
+
+const COPART_DATA = {
+  amil_bronze_ct: [
+    {proc:'Consultas eletivas e clínicas',  val:'R$ 30,00'},
+    {proc:'Consultas hospitalares (PS)',     val:'R$ 80,00'},
+    {proc:'Exames básicos',                  val:'R$ 20,00'},
+    {proc:'Exames especiais',                val:'R$ 100,00'},
+    {proc:'Procedimentos básicos',           val:'R$ 35,00'},
+    {proc:'Procedimentos especiais',         val:'R$ 140,00'},
+    {proc:'Fisioterapia',                    val:'R$ 60,00'},
+    {proc:'Fonoaudiologia',                  val:'R$ 60,00'},
+    {proc:'Nutrição',                        val:'R$ 60,00'},
+    {proc:'Psicoterapia',                    val:'R$ 60,00'},
+    {proc:'Terapia Ocupacional',             val:'R$ 60,00'},
+    {proc:'Internação',                      val:'R$ 180,00'},
+  ],
+  amil_bronze_tp: [
+    {proc:'Fisioterapia',       val:'R$ 60,00'},
+    {proc:'Fonoaudiologia',     val:'R$ 60,00'},
+    {proc:'Nutrição',           val:'R$ 60,00'},
+    {proc:'Psicoterapia',       val:'R$ 60,00'},
+    {proc:'Terapia Ocupacional',val:'R$ 60,00'},
+  ],
+  porto_p220_cc: [
+    {proc:'Consultas eletivas e clínicas',val:'R$ 35,00'},
+    {proc:'Consultas hospitalares (PS)', val:'R$ 120,00'},
+    {proc:'Exames básicos',              val:'R$ 55,00'},
+    {proc:'Exames especiais',            val:'R$ 130,00'},
+    {proc:'Terapias',                    val:'R$ 55,00'},
+    {proc:'Internação',                  val:'R$ 320,00'},
+  ],
+  porto_p220_sc: [],
+};
+
+const REDE = [
+  {reg:'Águas Claras',   hosp:'Hospital Águas Claras',    bronze:true,  porto:true},
+  {reg:'Asa Norte',      hosp:'Santa Lucia Norte',         bronze:false, porto:true},
+  {reg:'Asa Sul',        hosp:'Alvorada',                  bronze:true,  porto:true},
+  {reg:'Asa Sul',        hosp:'Pacini',                    bronze:false, porto:true},
+  {reg:'Ceilândia',      hosp:'Anchieta Ceilândia',        bronze:false, porto:true},
+  {reg:'Gama',           hosp:'Santa Lucia Gama',          bronze:false, porto:true},
+  {reg:'Lago Sul',       hosp:'Hospital Brasília',         bronze:true,  porto:false},
+  {reg:'Lago Sul',       hosp:'DAHER',                     bronze:false, porto:true},
+  {reg:'Sudoeste',       hosp:'Maternidade Brasília',      bronze:true,  porto:true},
+  {reg:'Taguatinga Sul', hosp:'Santa Marta',               bronze:false, porto:true},
+  {reg:'Todas Unidades', hosp:'Laboratório Exame',         bronze:true,  porto:true},
+];
+
+/* ═══════════════════════════════════════════════
+   ESTADO
+═══════════════════════════════════════════════ */
+let state = {step:1, planoKey:null, deps:[]};
+
+function fmt(v){
+  return 'R$ '+v.toFixed(2).replace('.',',').replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+}
+
+function calcIdade(d){
+  const n=new Date(d), h=new Date();
+  if(isNaN(n)) return null;
+  let a=h.getFullYear()-n.getFullYear();
+  const m=h.getMonth()-n.getMonth();
+  if(m<0||(m===0&&h.getDate()<n.getDate())) a--;
+  return a>=0?a:null;
+}
+
+function calcFaixa(idade){
+  if(idade===null||idade===undefined) return '';
+  if(idade<=18) return '0-18';
+  if(idade<=23) return '19-23';
+  if(idade<=28) return '24-28';
+  if(idade<=33) return '29-33';
+  if(idade<=38) return '34-38';
+  if(idade<=43) return '39-43';
+  if(idade<=48) return '44-48';
+  if(idade<=53) return '49-53';
+  if(idade<=58) return '54-58';
+  return '59+';
+}
+
+/* ═══════════════════════════════════════════════
+   NAVEGAÇÃO
+═══════════════════════════════════════════════ */
+function goStep(n){
+  if(n===2){
+    const nm=document.getElementById('nome').value.trim();
+    const dn=document.getElementById('dataNasc').value;
+    if(!nm){alert('Informe o seu nome.');return;}
+    if(!dn||calcIdade(dn)===null){
+      document.getElementById('err-dataNasc').classList.add('show');
+      alert('Informe uma data de nascimento válida.');return;
+    }
+    document.getElementById('err-dataNasc').classList.remove('show');
+    fbq('track','ViewContent');
+  }
+  if(n===3&&!state.planoKey){alert('Selecione o plano de sua preferência para continuar.');return;}
+
+  ['s1','s2','s3','s4','s-success'].forEach(id=>
+    document.getElementById(id).classList.add('hidden')
+  );
+  document.getElementById('s'+n).classList.remove('hidden');
+  state.step=n;
+  updateSteps();
+  window.scrollTo({top:0,behavior:'smooth'});
+
+  if(n===2) renderPlans();
+  if(n===3) renderDeps();
+  if(n===4) renderResumo();
+}
+
+function updateSteps(){
+  document.querySelectorAll('.step-item').forEach(el=>{
+    const s=+el.dataset.s;
+    el.classList.remove('active','done');
+    if(s===state.step) el.classList.add('active');
+    else if(s<state.step) el.classList.add('done');
+  });
+}
+
+/* ═══════════════════════════════════════════════
+   PLANOS
+═══════════════════════════════════════════════ */
+function renderPlans(){
+  const idade=calcIdade(document.getElementById('dataNasc').value);
+  const faixa=calcFaixa(idade);
+  const badge=document.getElementById('faixa-badge');
+  badge.textContent=idade!==null?idade+' anos':'';
+
+  const grid=document.getElementById('plans-grid');
+  grid.innerHTML='';
+
+  Object.entries(PLANOS).forEach(([key,p])=>{
+    const preco=p.v[faixa]||0;
+    const sel=state.planoKey===key;
+    const div=document.createElement('div');
+    div.className='plan-card'+(sel?' selected':'');
+    div.onclick=()=>selectPlan(key);
+
+    const opCls=p.cat==='amil'?'op-amil':'op-porto';
+
+    let cobCls='regional', cpBadge='';
+    if(p.cob==='Nacional') cobCls='nacional';
+    if(key==='amil_bronze_ct')  cpBadge='<span class="plan-badge cp-total">Copart Total</span>';
+    if(key==='amil_bronze_tp')  cpBadge='<span class="plan-badge cp-tp">Copart s/ Terapias</span>';
+    if(key==='porto_p220_cc')   cpBadge='<span class="plan-badge cp-sim">Com Copart</span>';
+    if(key==='porto_p220_sc')   cpBadge='<span class="plan-badge cp-nao">Sem Copart</span>';
+
+    div.innerHTML=`
+      <div class="op-badge ${opCls}">${p.op}</div>
+      <div class="plan-name">${p.nome}</div>
+      <div class="plan-name-sub">${p.sub}</div>
+      <div class="plan-badges">
+        <span class="plan-badge ${cobCls}">${p.cob}</span>${cpBadge}
+      </div>
+      <div class="plan-price-full">${preco?fmt(preco):'—'}</div>
+      <div class="plan-price-label">valor total / mês</div>
+      <div class="plan-check">
+        <svg viewBox="0 0 12 10"><polyline points="1,5 4,8 11,1" stroke="#fff" stroke-width="2" fill="none"/></svg>
+      </div>
+    `;
+    grid.appendChild(div);
+  });
+
+  if(state.planoKey) renderDetails(state.planoKey);
+}
+
+function selectPlan(key){
+  state.planoKey=key;
+  renderPlans();
+  fbq('track','CustomizeProduct',{content_name:PLANOS[key].op+' '+PLANOS[key].nome});
+}
+
+function renderDetails(key){
+  const p=PLANOS[key];
+  document.getElementById('details-panel').classList.remove('hidden');
+  const isBronze=p.cat==='amil';
+
+  /* ─── Coparticipação ─── */
+  const items=COPART_DATA[key];
+  const copartDiv=document.getElementById('details-copart');
+  if(!items||items.length===0){
+    copartDiv.innerHTML=`
+      <div class="details-title">Coparticipação — ${p.op} ${p.nome} · ${p.sub}</div>
+      <div class="no-copart-box">✓ Este plano não possui coparticipação. Você utiliza os serviços sem pagar nada além da mensalidade.</div>
+    `;
+  } else {
+    const rows=items.map(i=>`
+      <tr><td>${i.proc}</td><td>${i.val}</td></tr>
+    `).join('');
+    copartDiv.innerHTML=`
+      <div class="details-title">Coparticipação — ${p.op} ${p.nome} · ${p.sub}</div>
+      <div style="overflow:hidden;border-radius:10px;border:1px solid var(--border)">
+        <table class="copart-table">
+          <thead><tr><th>Procedimento</th><th>Valor por uso</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  /* ─── Rede Credenciada ─── */
+  const redeDiv=document.getElementById('details-rede');
+  const rows=REDE.map(r=>`
+    <tr>
+      <td class="reg">${r.reg}</td>
+      <td class="hosp">${r.hosp}</td>
+      <td class="${isBronze?'hl':''}">${r.bronze?'<span class="tick">✓</span>':'<span class="cross">—</span>'}</td>
+      <td class="${!isBronze?'hl':''}">${r.porto?'<span class="tick">✓</span>':'<span class="cross">—</span>'}</td>
+    </tr>
+  `).join('');
+
+  redeDiv.innerHTML=`
+    <div class="details-title">Rede Credenciada</div>
+    <p style="font-size:11px;color:var(--muted);margin-bottom:10px">Comparativo entre os planos disponíveis. A coluna em destaque corresponde ao plano selecionado.</p>
+    <div class="rede-table-wrap">
+      <table class="rede">
+        <thead>
+          <tr>
+            <th class="left" style="min-width:110px">Região</th>
+            <th class="left" style="min-width:190px">Hospital / Laboratório</th>
+            <th class="${isBronze?'hl':''}">Amil Bronze<br><small style="font-weight:400;opacity:.8">Regional</small></th>
+            <th class="${!isBronze?'hl':''}">Porto Saúde P220<br><small style="font-weight:400;opacity:.8">Nacional</small></th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  `;
+}
+
+/* ═══════════════════════════════════════════════
+   DEPENDENTES
+═══════════════════════════════════════════════ */
+const PARENTESCOS=['Cônjuge','Filho(a)','Pai','Mãe','Outro'];
+
+function addDep(){state.deps.push({nome:'',parentesco:'',dataNasc:'',peso:'',altura:''});renderDeps();}
+function removeDep(i){state.deps.splice(i,1);renderDeps();}
+function setDep(i,field,val){state.deps[i][field]=val;}
+
+function renderDeps(){
+  const list=document.getElementById('deps-list');
+  if(!state.deps.length){
+    list.innerHTML='<p style="color:var(--muted);font-size:13px;margin-bottom:16px">Nenhum dependente adicionado. Se não houver, clique em "Ver Resumo" para prosseguir.</p>';
+    return;
+  }
+  list.innerHTML=state.deps.map((d,i)=>{
+    const p=PLANOS[state.planoKey];
+    const idadeD=calcIdade(d.dataNasc);
+    const faixa=calcFaixa(idadeD);
+    const preco=faixa&&p?p.v[faixa]||0:0;
+    const ageTag=idadeD!==null?`<div class="age-tag">${idadeD} anos · Faixa ${faixa}</div>`:'';
+    const ptOpts=PARENTESCOS.map(pt=>`<option value="${pt}" ${d.parentesco===pt?'selected':''}>${pt}</option>`).join('');
+    return `<div class="dep-card">
+      <div class="dep-card-title">Dependente ${i+1}</div>
+      <button class="dep-remove" onclick="removeDep(${i})">Remover</button>
+      <div class="field-row">
+        <div class="field">
+          <label>Nome</label>
+          <input type="text" value="${d.nome}" placeholder="Nome do dependente" oninput="setDep(${i},'nome',this.value)">
+        </div>
+        <div class="field">
+          <label>Parentesco</label>
+          <select onchange="setDep(${i},'parentesco',this.value)">
+            <option value="">Selecione…</option>${ptOpts}
+          </select>
+        </div>
+      </div>
+      <div class="field-row-3">
+        <div class="field">
+          <label>Data de nascimento</label>
+          <input type="date" value="${d.dataNasc}" max="${new Date().toISOString().split('T')[0]}"
+            onchange="setDep(${i},'dataNasc',this.value);renderDeps()">${ageTag}
+        </div>
+        <div class="field">
+          <label>Peso (kg)</label>
+          <input type="number" value="${d.peso}" placeholder="75" min="1" max="300" step="0.1"
+            oninput="setDep(${i},'peso',this.value)">
+        </div>
+        <div class="field">
+          <label>Altura (cm)</label>
+          <input type="number" value="${d.altura}" placeholder="175" min="30" max="250"
+            oninput="setDep(${i},'altura',this.value)">
+        </div>
+      </div>
+      ${preco>0?`<div class="dep-price">${fmt(preco)} / mês</div>
+      <div class="dep-note">Estimativa para este dependente</div>`:''}
+    </div>`;
+  }).join('');
+}
+
+/* ═══════════════════════════════════════════════
+   RESUMO
+═══════════════════════════════════════════════ */
+function renderResumo(){
+  const nome=document.getElementById('nome').value.trim();
+  const dataNasc=document.getElementById('dataNasc').value;
+  const pesoVal=parseFloat(document.getElementById('peso').value)||0;
+  const alturaVal=parseFloat(document.getElementById('altura').value)||0;
+  const idadeVal=calcIdade(dataNasc);
+  const faixa=calcFaixa(idadeVal);
+  const p=PLANOS[state.planoKey];
+  const vlTitular=p.v[faixa]||0;
+
+  let totalDeps=0, rowsDeps='';
+  state.deps.forEach((d,i)=>{
+    const idadeD=calcIdade(d.dataNasc);
+    const df=calcFaixa(idadeD);
+    const vd=df&&p?p.v[df]||0:0;
+    totalDeps+=vd;
+    rowsDeps+=`<div class="resumo-row">
+      <div>
+        <div class="rr-label">Dep. ${i+1} — ${d.nome||'—'} (${d.parentesco||'—'})</div>
+        <div class="rr-sub">${idadeD!==null?idadeD+' anos':''} · Faixa ${df||'—'}</div>
+      </div>
+      <span class="rr-val">${fmt(vd)}</span>
+    </div>`;
+  });
+
+  const totalGeral=vlTitular+totalDeps;
+  const infoExtra=[];
+  if(pesoVal) infoExtra.push('Peso: '+pesoVal+' kg');
+  if(alturaVal) infoExtra.push('Altura: '+alturaVal+' cm');
+
+  document.getElementById('resumo-content').innerHTML=`
+    <div class="resumo-header">
+      <div class="resumo-nome">${nome}</div>
+      <div class="resumo-plano">${p.op} · ${p.nome} · ${p.sub}</div>
+      <div class="resumo-plano" style="margin-top:2px;font-size:12px">${p.cob} · ${p.copartLabel}</div>
+      <div class="resumo-info">
+        ${idadeVal!==null?idadeVal+' anos · Faixa '+faixa:''}
+        ${infoExtra.length?' &nbsp;·&nbsp; '+infoExtra.join(' · '):''}
+      </div>
+      <div class="resumo-total">${fmt(totalGeral)} <span>/ mês (estimado)</span></div>
+    </div>
+
+    <div class="card">
+      <div class="resumo-row">
+        <div>
+          <div class="rr-label">Titular — ${nome}</div>
+          <div class="rr-sub">${idadeVal!==null?idadeVal+' anos':''}${faixa?' · Faixa '+faixa:''}</div>
+        </div>
+        <span class="rr-val">${fmt(vlTitular)}</span>
+      </div>
+      ${rowsDeps}
+      ${totalDeps>0?`<div class="resumo-row">
+        <div>
+          <div class="rr-label">Subtotal dependentes (${state.deps.length})</div>
+        </div>
+        <span class="rr-val">${fmt(totalDeps)}</span>
+      </div>`:''}
+      <div class="resumo-row" style="border-top:2px solid var(--navy);margin-top:4px;padding-top:14px">
+        <span class="rr-label" style="font-weight:700;color:var(--navy)">Total estimado / mês</span>
+        <span class="rr-val" style="font-size:18px;color:var(--blue)">${fmt(totalGeral)}</span>
+      </div>
+    </div>
+  `;
+}
+
+/* ═══════════════════════════════════════════════
+   ENVIO
+═══════════════════════════════════════════════ */
+async function enviar(){
+  const btn=document.getElementById('btn-enviar');
+  btn.textContent='Enviando…'; btn.disabled=true;
+
+  const nome=document.getElementById('nome').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const dataNascE=document.getElementById('dataNasc').value;
+  const pesoEnv=document.getElementById('peso').value;
+  const altEnv=document.getElementById('altura').value;
+  const idadeEnv=calcIdade(dataNascE);
+  const faixa=calcFaixa(idadeEnv);
+  const p=PLANOS[state.planoKey];
+  const vlTitular=p.v[faixa]||0;
+  const totalDeps=state.deps.reduce((s,d)=>{
+    const df=calcFaixa(calcIdade(d.dataNasc));
+    return s+(df&&p?p.v[df]||0:0);
+  },0);
+
+  const payload={
+    empresa:'BEIRAMAR',
+    nome, email,
+    dataNasc:dataNascE, idade:idadeEnv, faixa,
+    peso:pesoEnv, altura:altEnv,
+    plano:p.nome, subPlano:p.sub, operadora:p.op,
+    cobertura:p.cob, copartTipo:p.copartLabel,
+    vlTitular, vlDeps:totalDeps, vlTotal:vlTitular+totalDeps,
+    numDeps:state.deps.length,
+    deps:state.deps.map(d=>`${d.nome||'—'} (${d.parentesco}, ${calcIdade(d.dataNasc)} anos, ${d.peso}kg, ${d.altura}cm)`).join(' | '),
+  };
+
+  try{
+    await fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify(payload)});
+    fbq('track','Lead',{content_name:'BEIRAMAR - '+p.op+' '+p.nome});
+  }catch(e){}
+
+  ['s1','s2','s3','s4'].forEach(id=>document.getElementById(id).classList.add('hidden'));
+  document.getElementById('s-success').classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ═══════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded',()=>{
+  const today=new Date().toISOString().split('T')[0];
+  const dnInput=document.getElementById('dataNasc');
+  dnInput.max=today;
+
+  dnInput.addEventListener('change',()=>{
+    const tag=document.getElementById('age-tag-titular');
+    const err=document.getElementById('err-dataNasc');
+    const idade=calcIdade(dnInput.value);
+    if(idade!==null&&idade>=0){
+      tag.textContent=idade+' anos · Faixa '+calcFaixa(idade);
+      tag.classList.remove('hidden');
+      err.classList.remove('show');
+    }else{
+      tag.classList.add('hidden');
+    }
+  });
+});
+</script>
+</body>
+</html>
